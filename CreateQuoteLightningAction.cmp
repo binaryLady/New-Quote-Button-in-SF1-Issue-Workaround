@@ -1,0 +1,40 @@
+<aura:component controller="CreateQuoteLightningActionController" implements="force:lightningQuickActionWithoutHeader,force:hasRecordId">
+	 
+    <aura:attribute name="opportunity" type="Opportunity" />
+    <aura:attribute name="newQuote" type="Quote"
+        default="{ 'sobjectType': 'Quote' }" /> <!-- default to empty record -->
+    
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+
+    <div class="slds-page-header" role="banner">
+        <p class="slds-text-heading--label">{!v.opportunity.Name}</p>
+        <h1 class="slds-page-header__title slds-m-right--small
+            slds-truncate slds-align-left">Create New Quote</h1>
+    </div>
+
+    <!-- Display the new quote form -->
+    <ui:inputText aura:id="myQuoteName" class="field" label="Quote Name" value="{!v.newQuote.Name}" required="true"/>
+    
+    <aura:attribute name="myOpportunity" type="string" default="{!v.opportunity.Name}" />
+    <ui:inputText class="field" label="Opportunity" value="{!v.myOpportunity}" disabled="true"/>
+    
+    <aura:attribute name="myAccount" type="string" default="{!v.opportunity.Account.Name}"/>
+    <ui:inputText class="field" label="Account Name" value="{!v.myAccount}" disabled="true"/>
+
+    <ui:outputText class="slds-form-element__label" value="Contact Name"/>
+    <aura:attribute name="myContact" type="Quote" default="{ 'sobjectType': 'Quote' }"/>
+    <force:inputField value="{!v.myContact.Contact_Filtered__c}" required="true"/>
+    <!--
+    <ui:outputText class="slds-form-element__label" value="Contact Name Unfiltered"/>
+    <force:inputField aura:id="myContact" value="{!v.newQuote.ContactId}" required="true"/>-->
+    <ui:outputText class="slds-form-element__label" value="Contact Name Unfiltered"/>
+    <force:inputField value="{!v.myContact.ContactId}" required="true"/>
+    
+    <aura:attribute name="myDate" type="Date" />
+    <aura:handler name="change" value="{!v.myDate}" action="{!c.handleValueChange}" />
+    <ui:inputDate aura:id="mySelectedDate"  label="Date of Expiration" displayDatePicker="true" value="{!v.myDate}" required="true"/>
+    
+    <lightning:button label="Cancel" onclick="{!c.handleCancel}" class="slds-m-top--medium" />
+    <lightning:button label="Save Quote" onclick="{!c.handleSaveQuote}" variant="brand" class="slds-m-top--medium"/>
+    
+</aura:component>
