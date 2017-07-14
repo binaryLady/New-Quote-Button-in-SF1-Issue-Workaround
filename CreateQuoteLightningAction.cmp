@@ -23,11 +23,6 @@
 
     <ui:outputText class="slds-form-element__label" value="Contact Name"/>
     <aura:attribute name="myContact" type="Quote" default="{ 'sobjectType': 'Quote' }"/>
-    <force:inputField value="{!v.myContact.Contact_Filtered__c}" required="true"/>
-    <!--
-    <ui:outputText class="slds-form-element__label" value="Contact Name Unfiltered"/>
-    <force:inputField aura:id="myContact" value="{!v.newQuote.ContactId}" required="true"/>-->
-    <ui:outputText class="slds-form-element__label" value="Contact Name Unfiltered"/>
     <force:inputField value="{!v.myContact.ContactId}" required="true"/>
     
     <aura:attribute name="myDate" type="Date" />
