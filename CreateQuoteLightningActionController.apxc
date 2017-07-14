@@ -1,0 +1,17 @@
+public with sharing class CreateQuoteLightningActionController {
+
+    @AuraEnabled
+    public static Opportunity getOpportunity(Id opportunityId) {
+        // Perform isAccessible() checks here
+        return [SELECT Name, AccountId, Account.Name FROM Opportunity WHERE Id = :opportunityId];
+    }
+    
+    @AuraEnabled
+    public static Quote saveQuoteWithOpportunity(Quote quote, Id opportunityId) {
+        // Perform isAccessible() and isUpdateable() checks here
+        quote.OpportunityId  = opportunityId;
+        upsert quote;
+        return quote;
+    }
+
+}
