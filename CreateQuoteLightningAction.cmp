@@ -19,11 +19,11 @@
     <ui:inputText class="field" label="Opportunity" value="{!v.myOpportunity}" disabled="true"/>
     
     <aura:attribute name="myAccount" type="string" default="{!v.opportunity.Account.Name}"/>
-    <ui:inputText class="field" label="Account Name" value="{!v.myAccount}" disabled="true"/>
+    <ui:inputText aura:id="myAccountName" class="field" label="Account Name" value="{!v.myAccount}" disabled="true"/>
 
     <ui:outputText class="slds-form-element__label" value="Contact Name"/>
     <aura:attribute name="myContact" type="Quote" default="{ 'sobjectType': 'Quote' }"/>
-    <force:inputField value="{!v.myContact.ContactId}" required="true"/>
+    <force:inputField aura:id="myContactName" value="{!v.myContact.ContactId}" required="true"/>
     
     <aura:attribute name="myDate" type="Date" />
     <aura:handler name="change" value="{!v.myDate}" action="{!c.handleValueChange}" />
