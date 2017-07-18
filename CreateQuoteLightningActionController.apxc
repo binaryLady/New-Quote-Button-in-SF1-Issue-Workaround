@@ -7,9 +7,10 @@ public with sharing class CreateQuoteLightningActionController {
     }
     
     @AuraEnabled
-    public static Quote saveQuoteWithOpportunity(Quote quote, Id opportunityId) {
+    public static Quote saveQuoteWithOpportunity(Quote quote, Id opportunityId, Id contactId) {
         // Perform isAccessible() and isUpdateable() checks here
         quote.OpportunityId  = opportunityId;
+        quote.ContactId = contactId;
         upsert quote;
         return quote;
     }
