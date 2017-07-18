@@ -12,7 +12,6 @@
             if(state === "SUCCESS") {
                 component.set("v.opportunity", response.getReturnValue());
                 component.set("v.quote.Account","v.myQuoteName");
-                component.set("v.quote.ContactId","v.myContact");
  
             } else {
                 console.log('Problem getting opportunity, response state: ' + state);
@@ -36,7 +35,8 @@
             var saveQuoteAction = component.get("c.saveQuoteWithOpportunity");
             saveQuoteAction.setParams({
                 "quote": component.get("v.newQuote"),
-                "opportunityId": component.get("v.recordId")
+                "opportunityId": component.get("v.recordId"),
+                "contactId": component.get("v.myContact.ContactId")
             });
 
             // Configure the response handler for the action
